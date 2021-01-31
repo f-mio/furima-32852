@@ -2,6 +2,9 @@
 
 # データベース設計
 
+## ER図
+![ER図](app/assets/images/ER図.png)
+
 ## usersテーブル
 #### テーブル
 | column   | type      | option     |
