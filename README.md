@@ -5,6 +5,9 @@
 ## ER図
 ![ER図](app/assets/images/ER図.png)
 
+ER図
+https://gyazo.com/244162e1eb179410f02fdb81dca68203
+
 ## usersテーブル
 #### テーブル
 | column   | type      | option     |
