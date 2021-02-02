@@ -3,7 +3,7 @@
 # データベース設計
 
 ## ER図
-![ER図](app/assets/images/ER図.png)
+![ER図](/app/assets/images/ER図.png)
 https://gyazo.com/3c3df083b0de2535c62e4a4490ccdfa6
 
 ## usersテーブル
