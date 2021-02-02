@@ -4,173 +4,142 @@
 
 ## ER図
 ![ER図](app/assets/images/ER図.png)
-
-ER図
-https://gyazo.com/244162e1eb179410f02fdb81dca68203
+https://gyazo.com/3c3df083b0de2535c62e4a4490ccdfa6
 
 ## usersテーブル
 #### テーブル
-| column   | type      | option     |
-|----------|-----------|------------|
-| email    | string    | null:false |
-| password | string    | null:false |
+| column         | type      | option     |
+|----------------|-----------|------------|
+| email          | string    | null:false |
+| password       | string    | null:false |
+| nick_name      | string    | null:false |
+| first_name     | string    | null:false |
+| last_name      | string    | null:false |
+| furigana_first | string    | null:false |
+| furigana_last  | string    | null:false |
+| birthday       | date      | null:false |
+| points         | integer   | null:false |
 
 #### アソシエーション
-- has_one profile
 - has_many items
 - has_many purchases
 - has_many comments
-- has_many favorite_items
-- has_many unliked_items
 
 ## itemsテーブル
 #### テーブル
-| column              | type      | option       |
-|---------------------|-----------|--------------|
-| item_name           | string    | null:false   |
-| user_id             | reference | -            |
-| price               | integer   | null:false   |
-| category_id         | reference | -            |
-| image               | -         | ActiveStorage|
-| explanation         | text      | null:false   |
-| state_id            | reference | -            |
-| shipping_charge_id  | reference | -            |
-| delivery_from       | string    | null:false   |
-| delivery_day_id     | reference | -            |
+| column               | type      | option       |
+|----------------------|-----------|--------------|
+| item_name            | string    | null:false   |
+| user_id              | reference | -            |
+| price                | integer   | null:false   |
+| category_id          | integer   | null:false   |
+| explanation          | text      | null:false   |
+| state_id             | integer   | null:false   |
+| ship_charge_id       | integer   | null:false   |
+| ship_from_id         | integer   | null:false   |
+| shipping_schedule_id | integer   | null:false   |
 
 #### アソシエーション
 - belongs_to user
 - has_one purchase
 - has_many comments
-- has_many unliked_item
-- has_many favorite_items
-- has_one category
-- has_one states
-- has_one shipping_charge
-- has_one payment_method
+- belongs_to category_id
+- belongs_to state_id
+- belongs_to ship_charge_id
+- belongs_to ship_from_id
+- belongs_to shipping_schedule_id
 
 ## purchases
 #### テーブル
-| column              | type      | option       |
-|---------------------|-----------|--------------|
-| user_id             | reference | null:false   |
-| item_id             | reference | null:false   |
-| payment_method_id   | reference | null:false   |
-| to_country_id       | reference | null:false   |
-| to_postnumber       | integer   | null:false   |
-| to_adress           | string    | null:false   |
-| tel_number          | integer   | null:false   |
-| creditcard_num      | integer   | -            |
-| creditcard_lim      | date      | -            |
-| creditcard_code     | string    | -            |
+| column          | type      | option       |
+|-----------------|-----------|--------------|
+| user_id         | reference | null:false   |
+| item_id         | reference | null:false   |
+| payment_id      | integer   | null:false   |
+| address_id      | integer   | null:false   |
+| creditcard_num  | integer   | -            |
+| creditcard_lim  | date      | -            |
+| creditcard_code | integer   | -            |
 
 #### アソシエーション
 - belongs_to user
 - belongs_to item
-- has_one payment_method
+- belongs_to payment_id
+- belongs_to address_id
+
+## adresses
+#### テーブル
+| column    | type      | option        |
+|-----------|-----------|---------------|
+| post_num  | integer   | null:false    |
+| address   | text      | null:false    |
+| tel_num   | integer   | null:false    |
+
+#### アソシエーション
+- belongs_to purchase
 
 ## comments
 #### テーブル
 | column    | type      | option        |
 |-----------|-----------|---------------|
-| text      | text      | null:false    |
 | user_id   | reference | -             |
 | item_id   | reference | -             |
+| comment   | text      | null:false    |
 
 #### アソシエーション
 - belongs_to user
 - belongs_to item
 
-## profileテーブル
+## categories
 #### テーブル
-| column       | type      | option     |
-|--------------|-----------|------------|
-| user_id      | reference | -          |
-| nick_name    | string    | null:false |
-| first_name   | string    | null:false |
-| last_name    | string    | null:false |
-| furigana_f   | string    | null:false |
-| furigana_l   | strint    | null:false |
-| birth_year   | integer   | -          |
-| birth_month  | integer   | -          |
-| birth_day    | integer   | -          |
-| credit_num   | integer   | -          |
-| credit_limit | date      | -          |
-| points       | integer   | null:false |
+| column          | type      | option       |
+|-----------------|-----------|--------------|
+| category        | string    | null:false   |
 
 #### アソシエーション
-・belongs_to user
+- has_many items
 
-## categoriesテーブル
+## states
 #### テーブル
-| column       | type      | option     |
-|--------------|-----------|------------|
-| item_id      | reference | -          |
-| category     | string    | null:false |
+| column       | type      | option       |
+|--------------|-----------|--------------|
+| state        | string    | null:false   |
 
 #### アソシエーション
-- belongs_to item
+- has_many items
 
-## statesテーブル
+## ship_charges
 #### テーブル
-| column       | type      | option     |
-|--------------|-----------|------------|
-| item_id       | reference | -          |
-| state        | string    | null:false |
+| column     | type      | option       |
+|------------|-----------|--------------|
+| pay_user   | boolean   | null:false   |
 
 #### アソシエーション
-- belongs_to item
+- has_many items
 
-## shipping_chargesテーブル
+## ship_froms
 #### テーブル
-| column       | type      | option     |
-|--------------|-----------|------------|
-| item_id      | reference | -          |
-| category     | string    | null:false |
+| column     | type      | option       |
+|------------|-----------|--------------|
+| prefecture | string    | null:false   |
 
 #### アソシエーション
-- belongs_to item
+- has_many items
 
-## delivery_datesテーブル
+## shipping_schedules
 #### テーブル
-| column        | type      | option     |
-|---------------|-----------|------------|
-| item_id       | reference | -          |
-| delivery_date | date      | null:false |
+| column     | type      | option       |
+|------------|-----------|--------------|
+| schedule   | string    | null:false   |
 
 #### アソシエーション
-- belongs_to item
+- has_many items
 
-## payment_methodsテーブル
+## payments
 #### テーブル
-| column         | type      | option     |
-|----------------|-----------|------------|
-| item_id        | reference | -          |
-| payment_method | string    | null:false |
+| column     | type      | option       |
+|------------|-----------|--------------|
+| method     | string    | null:false   |
 
 #### アソシエーション
-- belongs_to item
-
-## favorite_itemsテーブル
-#### テーブル
-| column     | type      | option     |
-|------------|-----------|------------|
-| user_id    | reference | -          |
-| item_id    | reference | -          |
-| favorite   | boolean   | null:false |
-
-#### アソシエーション
-- belongs_to user
-- belongs_to item
-
-## unlikesテーブル
-#### テーブル
-| column     | type      | option     |
-|------------|-----------|------------|
-| user_id    | reference | -          |
-| item_id    | reference | -          |
-| unlike     | boolean   | null:false |
-
-#### アソシエーション
-- belongs_to user
-- belongs_to item
+- has_many purchases
