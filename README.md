@@ -3,7 +3,6 @@
 # データベース設計
 
 ## ER図
-![ER図](furima-32852/tmp/storage/furima_ER.png)
 https://gyazo.com/07ac0009ae6186e76b7c45c56ac9debd
 
 ## usersテーブル
