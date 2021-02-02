@@ -3,8 +3,8 @@
 # データベース設計
 
 ## ER図
-![ER図](app/assets/images/ER図.png)
-https://gyazo.com/3c3df083b0de2535c62e4a4490ccdfa6
+![ER図](furima-32852/tmp/storage/furima_ER.png)
+https://gyazo.com/07ac0009ae6186e76b7c45c56ac9debd
 
 ## usersテーブル
 #### テーブル
@@ -27,17 +27,17 @@ https://gyazo.com/3c3df083b0de2535c62e4a4490ccdfa6
 
 ## itemsテーブル
 #### テーブル
-| column               | type      | option       |
-|----------------------|-----------|--------------|
-| item_name            | string    | null:false   |
-| user_id              | reference | -            |
-| price                | integer   | null:false   |
-| category_id          | integer   | null:false   |
-| explanation          | text      | null:false   |
-| state_id             | integer   | null:false   |
-| ship_charge_id       | integer   | null:false   |
-| ship_from_id         | integer   | null:false   |
-| shipping_schedule_id | integer   | null:false   |
+| column                | type      | option       |
+|-----------------------|-----------|--------------|
+| item_name             | string    | null:false   |
+| user_id               | reference | -            |
+| price                 | integer   | null:false   |
+| category_id           | integer   | null:false   |
+| explain               | text      | null:false   |
+| state_id              | integer   | null:false   |
+| shipping_fee_id       | integer   | null:false   |
+| item_prefecture_id    | integer   | null:false   |
+| scheduled_delivery_id | integer   | null:false   |
 
 #### アソシエーション
 - belongs_to user
@@ -45,9 +45,9 @@ https://gyazo.com/3c3df083b0de2535c62e4a4490ccdfa6
 - has_many comments
 - belongs_to category_id
 - belongs_to state_id
-- belongs_to ship_charge_id
-- belongs_to ship_from_id
-- belongs_to shipping_schedule_id
+- belongs_to shipping_fee_id
+- belongs_to item_prefecture_id
+- belongs_to scheduled_delivery_id
 
 ## purchases
 #### テーブル
@@ -67,7 +67,7 @@ https://gyazo.com/3c3df083b0de2535c62e4a4490ccdfa6
 - belongs_to payment_id
 - belongs_to address_id
 
-## adresses
+## addresses
 #### テーブル
 | column    | type      | option        |
 |-----------|-----------|---------------|
@@ -108,7 +108,7 @@ https://gyazo.com/3c3df083b0de2535c62e4a4490ccdfa6
 #### アソシエーション
 - has_many items
 
-## ship_charges
+## shipping_fees
 #### テーブル
 | column     | type      | option       |
 |------------|-----------|--------------|
@@ -117,7 +117,7 @@ https://gyazo.com/3c3df083b0de2535c62e4a4490ccdfa6
 #### アソシエーション
 - has_many items
 
-## ship_froms
+## item_prefectures
 #### テーブル
 | column     | type      | option       |
 |------------|-----------|--------------|
@@ -126,7 +126,7 @@ https://gyazo.com/3c3df083b0de2535c62e4a4490ccdfa6
 #### アソシエーション
 - has_many items
 
-## shipping_schedules
+## scheduled_deliveries
 #### テーブル
 | column     | type      | option       |
 |------------|-----------|--------------|
