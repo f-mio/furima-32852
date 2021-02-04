@@ -4,21 +4,20 @@
 
 ## ER図
 
-https://gyazo.com/823c402663da39147c288e03758cabd0
+https://gyazo.com/238ef0e0560c1d6c88333fa019e791c0
 
 ## usersテーブル
 #### テーブル
-| column             | type    | option             |
-|--------------------|---------|--------------------|
-| email              | string  | null:false, unique |
-| encrypted_password | string  | null:false         |
-| nick_name          | string  | null:false         |
-| first_name         | string  | null:false         |
-| last_name          | string  | null:false         |
-| furigana_first     | string  | null:false         |
-| furigana_last      | string  | null:false         |
-| birthday           | date    | null:false         |
-| points             | integer | null:false         |
+| column             | type    | option                  |
+|--------------------|---------|-------------------------|
+| email              | string  | null:false, unique:true |
+| encrypted_password | string  | null:false              |
+| nick_name          | string  | null:false              |
+| first_name         | string  | null:false              |
+| last_name          | string  | null:false              |
+| furigana_first     | string  | null:false              |
+| furigana_last      | string  | null:false              |
+| birthday           | date    | null:false              |
 
 #### アソシエーション
 - has_many items
@@ -55,21 +54,23 @@ https://gyazo.com/823c402663da39147c288e03758cabd0
 |-----------------|-----------|--------------|
 | user            | reference | null:false   |
 | item            | reference | null:false   |
+| address         | reference | null:false   |
 
 #### アソシエーション
 - belongs_to user
 - belongs_to item
+- has_one address
 
 ## addresses
 #### テーブル
-| column     | type      | option        |
-|------------|-----------|---------------|
-| post_code  | string    | null:false    |
-| prefecture | integer   | null:false    |
-| city       | string    | null:false    |
-| address    | string    | null:false    |
-| building   | string    | -             |
-| tel_num    | string    | null:false    |
+| column        | type      | option        |
+|---------------|-----------|---------------|
+| post_code     | string    | null:false    |
+| prefecture_id | integer   | null:false    |
+| city          | string    | null:false    |
+| address       | string    | null:false    |
+| building      | string    | -             |
+| tel_num       | string    | null:false    |
 
 #### アソシエーション
 - belongs_to purchase
