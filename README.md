@@ -3,21 +3,22 @@
 # データベース設計
 
 ## ER図
-https://gyazo.com/07ac0009ae6186e76b7c45c56ac9debd
+
+https://gyazo.com/823c402663da39147c288e03758cabd0
 
 ## usersテーブル
 #### テーブル
-| column         | type      | option     |
-|----------------|-----------|------------|
-| email          | string    | null:false |
-| password       | string    | null:false |
-| nick_name      | string    | null:false |
-| first_name     | string    | null:false |
-| last_name      | string    | null:false |
-| furigana_first | string    | null:false |
-| furigana_last  | string    | null:false |
-| birthday       | date      | null:false |
-| points         | integer   | null:false |
+| column             | type    | option             |
+|--------------------|---------|--------------------|
+| email              | string  | null:false, unique |
+| encrypted_password | string  | null:false         |
+| nick_name          | string  | null:false         |
+| first_name         | string  | null:false         |
+| last_name          | string  | null:false         |
+| furigana_first     | string  | null:false         |
+| furigana_last      | string  | null:false         |
+| birthday           | date    | null:false         |
+| points             | integer | null:false         |
 
 #### アソシエーション
 - has_many items
@@ -29,7 +30,7 @@ https://gyazo.com/07ac0009ae6186e76b7c45c56ac9debd
 | column                | type      | option       |
 |-----------------------|-----------|--------------|
 | item_name             | string    | null:false   |
-| user_id               | reference | -            |
+| user                  | reference | null:false   |
 | price                 | integer   | null:false   |
 | category_id           | integer   | null:false   |
 | explain               | text      | null:false   |
@@ -52,93 +53,35 @@ https://gyazo.com/07ac0009ae6186e76b7c45c56ac9debd
 #### テーブル
 | column          | type      | option       |
 |-----------------|-----------|--------------|
-| user_id         | reference | null:false   |
-| item_id         | reference | null:false   |
-| payment_id      | integer   | null:false   |
-| address_id      | integer   | null:false   |
-| creditcard_num  | integer   | -            |
-| creditcard_lim  | date      | -            |
-| creditcard_code | integer   | -            |
+| user            | reference | null:false   |
+| item            | reference | null:false   |
 
 #### アソシエーション
 - belongs_to user
 - belongs_to item
-- belongs_to payment_id
-- belongs_to address_id
 
 ## addresses
 #### テーブル
-| column    | type      | option        |
-|-----------|-----------|---------------|
-| post_num  | integer   | null:false    |
-| address   | text      | null:false    |
-| tel_num   | integer   | null:false    |
+| column     | type      | option        |
+|------------|-----------|---------------|
+| post_code  | string    | null:false    |
+| prefecture | integer   | null:false    |
+| city       | string    | null:false    |
+| address    | string    | null:false    |
+| building   | string    | -             |
+| tel_num    | string    | null:false    |
 
 #### アソシエーション
 - belongs_to purchase
 
 ## comments
 #### テーブル
-| column    | type      | option        |
-|-----------|-----------|---------------|
-| user_id   | reference | -             |
-| item_id   | reference | -             |
-| comment   | text      | null:false    |
+| column  | type      | option     |
+|---------|-----------|------------|
+| user    | reference | null:false |
+| item    | reference | null:false |
+| comment | text      | null:false |
 
 #### アソシエーション
 - belongs_to user
 - belongs_to item
-
-## categories
-#### テーブル
-| column          | type      | option       |
-|-----------------|-----------|--------------|
-| category        | string    | null:false   |
-
-#### アソシエーション
-- has_many items
-
-## states
-#### テーブル
-| column       | type      | option       |
-|--------------|-----------|--------------|
-| state        | string    | null:false   |
-
-#### アソシエーション
-- has_many items
-
-## shipping_fees
-#### テーブル
-| column     | type      | option       |
-|------------|-----------|--------------|
-| pay_user   | boolean   | null:false   |
-
-#### アソシエーション
-- has_many items
-
-## item_prefectures
-#### テーブル
-| column     | type      | option       |
-|------------|-----------|--------------|
-| prefecture | string    | null:false   |
-
-#### アソシエーション
-- has_many items
-
-## scheduled_deliveries
-#### テーブル
-| column     | type      | option       |
-|------------|-----------|--------------|
-| schedule   | string    | null:false   |
-
-#### アソシエーション
-- has_many items
-
-## payments
-#### テーブル
-| column     | type      | option       |
-|------------|-----------|--------------|
-| method     | string    | null:false   |
-
-#### アソシエーション
-- has_many purchases
