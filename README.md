@@ -4,7 +4,7 @@
 
 ## ER図
 
-https://gyazo.com/238ef0e0560c1d6c88333fa019e791c0
+https://gyazo.com/e8e549b805984a83b847231083b3358e
 
 ## usersテーブル
 #### テーブル
@@ -42,11 +42,6 @@ https://gyazo.com/238ef0e0560c1d6c88333fa019e791c0
 - belongs_to user
 - has_one purchase
 - has_many comments
-- belongs_to category_id
-- belongs_to state_id
-- belongs_to shipping_fee_id
-- belongs_to item_prefecture_id
-- belongs_to scheduled_delivery_id
 
 ## purchases
 #### テーブル
@@ -54,7 +49,6 @@ https://gyazo.com/238ef0e0560c1d6c88333fa019e791c0
 |-----------------|-----------|--------------|
 | user            | reference | null:false   |
 | item            | reference | null:false   |
-| address         | reference | null:false   |
 
 #### アソシエーション
 - belongs_to user
@@ -65,6 +59,7 @@ https://gyazo.com/238ef0e0560c1d6c88333fa019e791c0
 #### テーブル
 | column        | type      | option        |
 |---------------|-----------|---------------|
+| purchase      | reference | null:false    |
 | post_code     | string    | null:false    |
 | prefecture_id | integer   | null:false    |
 | city          | string    | null:false    |
