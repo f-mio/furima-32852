@@ -75,12 +75,38 @@ RSpec.describe User, type: :model do
 
     context '新規登録／本人情報の確認' do
       it 'ユーザー本名は、名字の入力が必須であること' do
+        @user.last_name = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include(
+          "Last name can't be blank",
+          "Last name 全角文字で入力してください")
       end
       it 'ユーザー本名は、名前の入力が必須であること' do
+        @user.first_name = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include(
+          "First name can't be blank",
+          "First name 全角文字で入力してください")
       end
-      it 'ユーザー本名の名字は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+      it 'ユーザー本名の名字は、半角英数字で登録できないこと' do
+        @user.last_name = "abc12"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name 全角文字で入力してください")
       end
-      it 'ユーザー本名の名前は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+      it 'ユーザー本名の名字は、半角カタカナで登録できないこと' do
+        @user.last_name = "ｶﾀｶﾅ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name 全角文字で入力してください")
+      end
+      it 'ユーザー本名の名前は、半角英数字で登録できないこと' do
+        @user.first_name = "abc12"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name 全角文字で入力してください")
+      end
+      it 'ユーザー本名の名前は、半角カタカナで登録できないこと' do
+        @user.first_name = "ｶﾀｶﾅ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name 全角文字で入力してください")
       end
       it 'ユーザー本名のフリガナは、名字の入力が必須であること' do
         @user.last_name_reading = ''
@@ -104,7 +130,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Last name reading 全角カタカナで入力してください')
       end
       it 'ユーザー本名の名字のフリガナは、半角英数字での入力できないこと' do
-        @user.last_name_reading = 'abc123'
+        @user.last_name_reading = 'abc12'
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name reading 全角カタカナで入力してください')
       end
@@ -114,7 +140,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Last name reading 全角カタカナで入力してください')
       end
       it 'ユーザー本名の名字のフリガナは、全角英数字での入力できないこと' do
-        @user.last_name_reading = 'ａｂｃ１２３'
+        @user.last_name_reading = 'ａｂｃ１２'
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name reading 全角カタカナで入力してください')
       end
@@ -129,7 +155,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('First name reading 全角カタカナで入力してください')
       end
       it 'ユーザー本名の名前のフリガナは、半角英数字での入力ができないこと' do
-        @user.first_name_reading = 'abc123'
+        @user.first_name_reading = 'abc12'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name reading 全角カタカナで入力してください')
       end
@@ -139,7 +165,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('First name reading 全角カタカナで入力してください')
       end
       it 'ユーザー本名の名前のフリガナは、全角英数字での入力ができないこと' do
-        @user.first_name_reading = 'ａｂｃ１２３'
+        @user.first_name_reading = 'ａｂｃ１２'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name reading 全角カタカナで入力してください')
       end
