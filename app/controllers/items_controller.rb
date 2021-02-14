@@ -7,9 +7,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-#    binding.pry
-    @user = Item.new(item_params)
-    if @user.save
+    @item = Item.new(item_params)
+    if @item.save
       redirect_to root_path
     else
       render :new
