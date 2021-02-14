@@ -1,11 +1,11 @@
-class Shippin_Fee < ActiveHash::Base
+class ShippingFee < ActiveHash::Base
   self.data = [
-    {id: 0, name: '−−−'},
-    {id: 1, name: '着払い(購入者負担)'},
-    {id: 2, name: '送料込み(出品者負担)'}
+    {id: 0, fee: '−−−'},
+    {id: 1, fee: '着払い(購入者負担)'},
+    {id: 2, fee: '送料込み(出品者負担)'}
   ]
 
-  include ActiveHash::Assosiations
-  has_many :articles
+  include ActiveHash::Associations
+  has_many :items
 
 end

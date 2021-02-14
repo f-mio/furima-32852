@@ -9,7 +9,7 @@ class State < ActiveHash::Base
     {id: 6, name: '全体的に状態が悪い'}
   ]
 
-  include ActiveHash::Assosiations
-  has_many :articles
+  include ActiveHash::Associations
+  has_many :items
 
 end
