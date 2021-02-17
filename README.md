@@ -34,7 +34,7 @@ https://gyazo.com/69dc48f513c15b2c9a8add121b96fd02
 | explain               | text      | null:false                   |
 | state_id              | integer   | null:false                   |
 | shipping_fee_id       | integer   | null:false                   |
-| item_prefecture_id    | integer   | null:false                   |
+| prefecture_id         | integer   | null:false                   |
 | scheduled_delivery_id | integer   | null:false                   |
 
 #### アソシエーション

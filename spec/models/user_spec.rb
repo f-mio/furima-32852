@@ -75,38 +75,40 @@ RSpec.describe User, type: :model do
 
     context '新規登録／本人情報の確認' do
       it 'ユーザー本名は、名字の入力が必須であること' do
-        @user.last_name = ""
+        @user.last_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include(
           "Last name can't be blank",
-          "Last name 全角文字で入力してください")
+          'Last name 全角文字で入力してください'
+        )
       end
       it 'ユーザー本名は、名前の入力が必須であること' do
-        @user.first_name = ""
+        @user.first_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include(
           "First name can't be blank",
-          "First name 全角文字で入力してください")
+          'First name 全角文字で入力してください'
+        )
       end
       it 'ユーザー本名の名字は、半角英数字で登録できないこと' do
-        @user.last_name = "abc12"
+        @user.last_name = 'abc12'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name 全角文字で入力してください")
+        expect(@user.errors.full_messages).to include('Last name 全角文字で入力してください')
       end
       it 'ユーザー本名の名字は、半角カタカナで登録できないこと' do
-        @user.last_name = "ｶﾀｶﾅ"
+        @user.last_name = 'ｶﾀｶﾅ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name 全角文字で入力してください")
+        expect(@user.errors.full_messages).to include('Last name 全角文字で入力してください')
       end
       it 'ユーザー本名の名前は、半角英数字で登録できないこと' do
-        @user.first_name = "abc12"
+        @user.first_name = 'abc12'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name 全角文字で入力してください")
+        expect(@user.errors.full_messages).to include('First name 全角文字で入力してください')
       end
       it 'ユーザー本名の名前は、半角カタカナで登録できないこと' do
-        @user.first_name = "ｶﾀｶﾅ"
+        @user.first_name = 'ｶﾀｶﾅ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name 全角文字で入力してください")
+        expect(@user.errors.full_messages).to include('First name 全角文字で入力してください')
       end
       it 'ユーザー本名のフリガナは、名字の入力が必須であること' do
         @user.last_name_reading = ''
