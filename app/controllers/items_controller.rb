@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     query  = 'SELECT * FROM items ORDER BY created_at desc;'
@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(1)
+    @item = Item.find(params[:id])
   end
 
   private
