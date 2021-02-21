@@ -59,7 +59,7 @@ https://gyazo.com/69dc48f513c15b2c9a8add121b96fd02
 | column        | type      | option                       |
 |---------------|-----------|------------------------------|
 | purchase      | reference | null:false,foreign_key :true |
-| post_code     | string    | null:false                   |
+| postal_code   | string    | null:false                   |
 | prefecture_id | integer   | null:false                   |
 | city          | string    | null:false                   |
 | address       | string    | null:false                   |
