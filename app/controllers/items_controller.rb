@@ -50,4 +50,5 @@ class ItemsController < ApplicationController
                                  :explanation, :state_id, :shipping_fee_id,
                                  :prefecture_id, :scheduled_delivery_id, :image).merge(user_id: current_user.id)
   end
+
 end
