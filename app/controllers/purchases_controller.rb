@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!
   before_action :validate_user_and_purchase
 
   def new
@@ -21,7 +22,7 @@ class PurchasesController < ApplicationController
   private
   def validate_user_and_purchase
     item = Item.find(params[:item_id])
-    unless user_signed_in? && current_user.id != item.user.id && item.purchase.nil?
+    unless current_user.id != item.user.id && item.purchase.nil?
       redirect_to root_path
     end
   end
