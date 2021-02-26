@@ -4,8 +4,11 @@ RSpec.describe PurchaseAddress, type: :model do
   describe "#create" do
     before do
       @purchase_address = FactoryBot.build(:purchase_address)
-      @user = FactoryBot.build(:user)
-      @item = FactoryBot.build(:item)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      @purchase_address.user_id = user.id
+      @purchase_address.item_id = item.id
+      sleep 0.01
     end
     context '正しく情報が入力されていれば保存できる' do
       it 'すべての情報で正しく入力がされている場合は保存ができる' do
@@ -74,7 +77,6 @@ RSpec.describe PurchaseAddress, type: :model do
       it '電話番号に文字列が含まれていると保存できない' do
         @purchase_address.tel_num = Faker::Number.leading_zero_number(digits: 10) + "a"
         @purchase_address.valid?
-#        binding.pry
         expect(@purchase_address.errors.full_messages).to include("Tel num must be integer and less than or equal 11 digits.")
       end
     end

@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
 
   def new
     @purchase_address = PurchaseAddress.new
-    @item = Item.find(params[:item_id])
+    set_item
   end
 
   def create
@@ -14,12 +14,15 @@ class PurchasesController < ApplicationController
       @purchase_address.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
+      set_item
       render :new
     end
   end
 
   private
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
   def validate_user_and_purchase
     item = Item.find(params[:item_id])
     unless current_user.id != item.user.id && item.purchase.nil?

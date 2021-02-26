@@ -1,11 +1,7 @@
 FactoryBot.define do
   factory :purchase_address do
-    # トークン
+    # 購入情報
     token {'11111111111111111'}
-
-    # purchaseテーブルの作成
-    user_id {Faker::Number.within(range: 100..10000)}
-    item_id {Faker::Number.within(range: 100..10000)}
 
     # アドレス情報
     postal_code    {Faker::Number.leading_zero_number(digits: 3) + "-" + Faker::Number.leading_zero_number(digits: 4)}

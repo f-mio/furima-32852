@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update]
   before_action :validate_user, only: [:edit, :update]
+  before_action :validate_item_status, only: [:edit]
 
   def index
     query  = 'SELECT * FROM items ORDER BY created_at desc;'
@@ -51,4 +52,7 @@ class ItemsController < ApplicationController
                                  :prefecture_id, :scheduled_delivery_id, :image).merge(user_id: current_user.id)
   end
 
+  def validate_item_status
+    redirect_to root_path if Item.find(params[:id]).purchase
+  end
 end
