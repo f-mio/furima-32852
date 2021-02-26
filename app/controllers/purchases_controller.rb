@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item , only: [:new,:create]
+  before_action :set_item
   before_action :validate_user_and_purchase
 
   def new
