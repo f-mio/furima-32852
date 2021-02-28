@@ -17,5 +17,4 @@ class User < ApplicationRecord
     validates :last_name_reading
   end
   validates :birthday, presence: true
-
 end
