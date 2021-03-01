@@ -26,11 +26,7 @@
         支払金額
       </h1>
       <p class='item-payment-price'>
-        <%if @item.shipping_fee.id==2 %>
-          ¥<%= @item.price + 1000 %>
-        <% else %>
-          ¥<%= @item.price %>
-        <% end %>
+        ¥<%= @item.price %>
       </p>
     </div>
     <%# /支払額の表示 %>
