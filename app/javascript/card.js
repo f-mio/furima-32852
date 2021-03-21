@@ -9,10 +9,10 @@ if (document.URL.match( /purchases\/new/ ) ){
       const formData = new FormData(formResult);
 
       const card = {
-      number:    formData.get("purchase_address[card_num]"),
-      cvc:       formData.get("purchase_address[cvc]"),
-      exp_month: formData.get("purchase_address[exp_month]"),
-      exp_year:  `20${formData.get("purchase_address[exp_year]")}`,
+        number:    formData.get("purchase_address[card_num]"),
+        cvc:       formData.get("purchase_address[cvc]"),
+        exp_month: formData.get("purchase_address[exp_month]"),
+        exp_year:  `20${formData.get("purchase_address[exp_year]")}`,
       };
 
     Payjp.createToken(card, (status, response) => {

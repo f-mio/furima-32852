@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   has_one    :purchase
 
   with_options presence: true do
-    validates :name, :explanation, :image
+    validates :name, :explanation, :images
     validates :price, numericality: {
       only_integer: true,
       greater_than_or_equal_to: 300,
