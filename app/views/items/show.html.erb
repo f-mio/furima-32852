@@ -89,6 +89,12 @@
       </p>
       <%= f.submit "コメントする", class:"comment-btn" %>
     <% end %>
+    <% @comments.each do |comment| %>
+      <div class="comment-list">
+        ・<%= comment.text %> <br>
+        　　by comment.user.name
+      </div>
+    <% end %>
   </div>
 
   <div class="links">

@@ -23,6 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+    query = "SELECT * FROM comments WHERE item_id = #{params[:id]}"
+    @comment  = Comment.new
+    @comments = Comment.find_by_sql(query)
   end
 
   def edit
