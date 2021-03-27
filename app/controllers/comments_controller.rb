@@ -4,13 +4,13 @@ class CommentsController < ApplicationController
     if comment.valid?
       comment.save
     else
-      render item_path(comment.item_id)
+      redirect_to item_path(comment_params[:item_id])
     end
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:text).merge(user_id: current_user.id, item_id: params[:id])
+    params.require(:comment).permit(:text).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 end

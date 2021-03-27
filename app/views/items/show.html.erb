@@ -92,7 +92,7 @@
     <% @comments.each do |comment| %>
       <div class="comment-list">
         ・<%= comment.text %> <br>
-        　　by comment.user.name
+        　　by <%=comment.user.nickname %>
       </div>
     <% end %>
   </div>
