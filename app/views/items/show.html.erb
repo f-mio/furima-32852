@@ -95,7 +95,7 @@
           <%= comment.text %> <br>
         </p>
         <p class="post-user">
-          by <%=comment.user.nickname %>　　　
+          by <%=comment.user.nickname %>　( <%= comment.created_at %> )　
         </p>
       </div>
     <% end %>
