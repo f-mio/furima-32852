@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :validate_user, only: [:edit, :update, :destroy]
   before_action :validate_item_status, only: [:edit, :destroy]
@@ -7,6 +7,10 @@ class ItemsController < ApplicationController
   def index
     query  = 'SELECT * FROM items ORDER BY created_at desc;'
     @items = Item.find_by_sql(query)
+  end
+
+  def search
+    @items = SearchItemsService.search(params[:keyword])
   end
 
   def new
