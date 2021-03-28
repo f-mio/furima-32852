@@ -187,7 +187,6 @@
   display: flex;
   justify-content: space-between;
   width: 50vw;
-
 }
 
 .change-item-btn {
@@ -195,6 +194,13 @@
   text-decoration: none;
   color: #3CCACE;
 }
+
+.change-item-disable {
+  font-size: 30px;
+  text-decoration: none;
+  color: gray;
+}
+
 
 .another-item {
   display: block;
@@ -207,7 +213,7 @@
 
 .comment-list{
   flex-direction: column;
-  border: #3CCACE solid 0.5px;
+  border: solid 0.5px lightblue;
   margin-bottom:  2px;
 }
 
