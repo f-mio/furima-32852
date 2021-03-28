@@ -204,3 +204,18 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+.comment-list{
+  flex-direction: column;
+  border: #3CCACE solid 0.5px;
+  margin-bottom:  2px;
+}
+
+
+.posted-comment{
+  text-align: left;
+}
+
+.post-user{
+  text-align: right;
+}

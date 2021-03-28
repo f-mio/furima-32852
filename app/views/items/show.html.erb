@@ -91,8 +91,12 @@
     <% end %>
     <% @comments.each do |comment| %>
       <div class="comment-list">
-        ・<%= comment.text %> <br>
-        　　by <%=comment.user.nickname %>
+        <p class="posted-comment">
+          ・<%= comment.text %> <br>
+        </p>
+        <p class="post-user">
+          by <%=comment.user.nickname %>　　　
+        </p>
       </div>
     <% end %>
   </div>
