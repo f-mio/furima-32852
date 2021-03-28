@@ -187,7 +187,6 @@
   display: flex;
   justify-content: space-between;
   width: 50vw;
-
 }
 
 .change-item-btn {
@@ -196,6 +195,13 @@
   color: #3CCACE;
 }
 
+.change-item-disable {
+  font-size: 30px;
+  text-decoration: none;
+  color: gray;
+}
+
+
 .another-item {
   display: block;
   margin: 30px 0px 8px;
@@ -203,4 +209,19 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 23px;
+}
+
+.comment-list{
+  flex-direction: column;
+  border: solid 0.5px lightblue;
+  margin-bottom:  2px;
+}
+
+
+.posted-comment{
+  text-align: left;
+}
+
+.post-user{
+  text-align: right;
 }

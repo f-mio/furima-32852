@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :items do
     resources :purchases, only: [:new, :create ]
+    resources :comments, only: [:create]
   end
 
 end

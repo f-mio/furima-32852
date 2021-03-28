@@ -80,26 +80,38 @@
   <%# /商品の概要 %>
 
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
+    <%= form_with url: item_comments_path(@item.id), local: true, model: @comment do |f| %>
+      <%= f.text_area :text ,class:"comment-text", placeholder: "コメント" ,id: "comment-field", maxlength: "250" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
+      <%= f.submit "コメントする", class:"comment-btn" %>
+    <% end %>
+    <% @comments.each do |comment| %>
+      <div class="comment-list">
+        <p class="posted-comment">
+          ・<%= comment.text %> <br>
+        </p>
+        <p class="post-user">
+          by <%=comment.user.nickname %>　　　
+        </p>
+      </div>
+    <% end %>
   </div>
+
   <div class="links">
-    <a href="#" class="change-item-btn">
-      ＜ 前の商品
-    </a>
-    <a href="#" class="change-item-btn">
-      後ろの商品 ＞
-    </a>
+    <% if @item.previous != nil %>
+      <%= link_to "＜ 前の商品", item_path(@item.previous), class:"change-item-btn" %>
+    <% else %>
+      <p  class="change-item-disable">＜ 前の商品</p>
+    <% end %>
+    <% if @item.next != nil %>
+      <%= link_to "後ろの商品 ＞", item_path(@item.next), class:"change-item-btn" %>
+    <% else %>
+      <p  class="change-item-disable">後ろの商品 ＞</p>
+    <% end %>
   </div>
   <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
 </div>
