@@ -1,11 +1,8 @@
-class SeachItemsService
+class SearchItemsService
   def self.search(search)
     if search != ""
-#      search = "%#{search}%"
-#      query = "SELECT * FROM items WHERE explanation LIKE ?"
-#      Item.where([query, search)
-      query = "SELECT * FROM items WHERE explanation LIKE %#{search}% or name  LIKE %#{search}%"
-      Item.where(query)
+      query = "SELECT * FROM items WHERE explanation LIKE '%#{search}%' or name  LIKE '%#{search}%'"
+      Item.find_by_sql(query)
     else
       Item.all
     end
