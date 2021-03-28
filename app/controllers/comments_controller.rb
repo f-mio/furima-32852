@@ -3,9 +3,8 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     if comment.valid?
       comment.save
-    else
-      redirect_to item_path(comment_params[:item_id])
     end
+    redirect_to item_path(comment_params[:item_id])
   end
 
   private
